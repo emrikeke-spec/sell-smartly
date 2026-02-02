@@ -12,21 +12,21 @@ const PLATFORMS = [
     id: 'grailed', 
     name: 'Grailed', 
     icon: '🏷️', 
-    loginUrl: 'https://www.grailed.com/users/sign_in',
+    loginUrl: 'https://www.grailed.com',
     description: 'Menswear marketplace'
   },
   { 
     id: 'vinted', 
     name: 'Vinted', 
     icon: '👗', 
-    loginUrl: 'https://www.vinted.com/member/general/login',
+    loginUrl: 'https://www.vinted.com',
     description: 'European fashion marketplace'
   },
   { 
     id: 'plick', 
     name: 'Plick', 
     icon: '🇸🇪', 
-    loginUrl: 'https://www.plick.se/logga-in',
+    loginUrl: 'https://www.plick.se',
     description: 'Swedish secondhand platform'
   },
 ];
