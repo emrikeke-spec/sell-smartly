@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>Reseller Companion</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>🏷️ Reseller Companion</h1>
+      <div class="status" id="status">
+        <span class="status-dot offline"></span>
+        <span>Disconnected</span>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="dashboard">Dashboard</button>
+      <button class="tab" data-tab="platforms">Platforms</button>
+      <button class="tab" data-tab="settings">Settings</button>
+      <button class="tab" data-tab="logs">Logs</button>
+    </nav>
+
+    <main class="content">
+      <!-- Dashboard Tab -->
+      <section class="tab-content active" id="dashboard-tab">
+        <div class="card">
+          <h2>Pending Tasks</h2>
+          <div id="pending-tasks" class="task-list">
+            <p class="empty-state">No pending tasks</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Recent Activity</h2>
+          <div id="task-history" class="task-list">
+            <p class="empty-state">No recent activity</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Platforms Tab -->
+      <section class="tab-content" id="platforms-tab">
+        <div class="card">
+          <h2>Platform Sessions</h2>
+          <p class="description">Log in to each platform to enable automation. Sessions are saved locally.</p>
+          
+          <div class="platform-list">
+            <div class="platform-item">
+              <div class="platform-info">
+                <span class="platform-icon">🏷️</span>
+                <span class="platform-name">Grailed</span>
+                <span class="session-status" id="grailed-status">Not logged in</span>
+              </div>
+              <button class="btn" id="login-grailed">Login</button>
+            </div>
+
+            <div class="platform-item">
+              <div class="platform-info">
+                <span class="platform-icon">👗</span>
+                <span class="platform-name">Vinted</span>
+                <span class="session-status" id="vinted-status">Not logged in</span>
+              </div>
+              <button class="btn" id="login-vinted">Login</button>
+            </div>
+
+            <div class="platform-item">
+              <div class="platform-info">
+                <span class="platform-icon">🇸🇪</span>
+                <span class="platform-name">Plick</span>
+                <span class="session-status" id="plick-status">Not logged in</span>
+              </div>
+              <button class="btn" id="login-plick">Login</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Settings Tab -->
+      <section class="tab-content" id="settings-tab">
+        <div class="card">
+          <h2>Connection Settings</h2>
+          
+          <div class="form-group">
+            <label for="supabase-url">Supabase URL</label>
+            <input type="url" id="supabase-url" placeholder="https://your-project.supabase.co">
+          </div>
+
+          <div class="form-group">
+            <label for="supabase-key">Supabase Anon Key</label>
+            <input type="password" id="supabase-key" placeholder="your-anon-key">
+          </div>
+
+          <div class="form-group">
+            <label for="user-id">User ID</label>
+            <input type="text" id="user-id" placeholder="your-user-id-from-web-app">
+            <p class="help-text">Find this in your web app profile or browser console</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Browser Settings</h2>
+          
+          <div class="form-group">
+            <label for="chrome-path">Chrome Executable Path</label>
+            <input type="text" id="chrome-path" placeholder="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome">
+            <p class="help-text">Path to your Chrome browser executable</p>
+          </div>
+        </div>
+
+        <button class="btn primary" id="save-settings">Save Settings</button>
+      </section>
+
+      <!-- Logs Tab -->
+      <section class="tab-content" id="logs-tab">
+        <div class="card">
+          <div class="logs-header">
+            <h2>Activity Log</h2>
+            <button class="btn small" id="clear-logs">Clear</button>
+          </div>
+          <div id="log-container" class="log-container">
+            <p class="log-entry">Application started</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
