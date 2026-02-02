@@ -27,8 +27,8 @@ npm start
 
 1. Go to **Settings** tab
 2. Enter your **Supabase URL**: `https://jmzzuqtwjzjamsjssjtd.supabase.co`
-3. Enter your **Supabase Anon Key** (from the web app)
-4. Enter your **User ID** (find this in browser console: `supabase.auth.getUser()`)
+3. Enter your **Supabase Anon Key**: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imptenp1cXR3anpqYW1zanNzanRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk5Nzg4MTIsImV4cCI6MjA4NTU1NDgxMn0.D8AC5VNUxIzkVxS0DvlFtg_s0ro2HfnEpxCwe2wn2CM`
+4. Enter your **User ID**: `f6ee0665-85eb-49e5-a935-6950172e1cde` (this is your current user ID)
 5. Verify the **Chrome path** is correct for your system
 
 ### 4. Login to Platforms

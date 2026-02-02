@@ -173,25 +173,64 @@ export default function Settings() {
           <CardHeader>
             <div className="flex items-center gap-2">
               <Monitor className="h-5 w-5 text-primary" />
-              <CardTitle>Desktop Companion App</CardTitle>
+              <CardTitle>Desktop Companion App Setup</CardTitle>
             </div>
             <CardDescription>
-              The companion app runs on your computer to automate posting across platforms
+              Follow these steps to automate posting across all platforms
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm text-muted-foreground">
-              Once you download and run the companion app, it will:
-            </p>
-            <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
-              <li>Connect to your browser sessions for each platform</li>
-              <li>Post listings automatically when you queue them</li>
-              <li>Update or delist items across all platforms</li>
-            </ul>
-            <Button variant="outline" className="gap-2" disabled>
-              <ExternalLink className="h-4 w-4" />
-              Download Companion App (Coming Soon)
-            </Button>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">1</span>
+                <div>
+                  <p className="font-medium">Download the companion app folder</p>
+                  <p className="text-sm text-muted-foreground">Get the <code className="bg-muted px-1 rounded">desktop-companion</code> folder from your project files</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">2</span>
+                <div>
+                  <p className="font-medium">Install dependencies</p>
+                  <p className="text-sm text-muted-foreground">Run <code className="bg-muted px-1 rounded">npm install</code> in the folder</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">3</span>
+                <div>
+                  <p className="font-medium">Start the app</p>
+                  <p className="text-sm text-muted-foreground">Run <code className="bg-muted px-1 rounded">npm start</code> to launch</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">4</span>
+                <div>
+                  <p className="font-medium">Enter your credentials in the app</p>
+                  <div className="mt-2 p-3 bg-muted rounded-md space-y-2 text-xs font-mono">
+                    <div><span className="text-muted-foreground">Supabase URL:</span> https://jmzzuqtwjzjamsjssjtd.supabase.co</div>
+                    <div><span className="text-muted-foreground">Anon Key:</span> eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</div>
+                    <div><span className="text-muted-foreground">Your User ID:</span> {user?.id || 'Log in to see your ID'}</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">5</span>
+                <div>
+                  <p className="font-medium">Log in to each platform</p>
+                  <p className="text-sm text-muted-foreground">Click Login for Grailed, Vinted, and Plick in the Platforms tab</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="pt-2 border-t">
+              <p className="text-sm text-muted-foreground">
+                After setup, any "Post to All" or "Delist" actions from this dashboard will automatically execute in the companion app.
+              </p>
+            </div>
           </CardContent>
         </Card>
 
