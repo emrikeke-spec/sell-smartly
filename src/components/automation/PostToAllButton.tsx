@@ -23,7 +23,7 @@ interface PostToAllButtonProps {
 export function PostToAllButton({ listingId, listingTitle }: PostToAllButtonProps) {
   const [open, setOpen] = useState(false);
   const [selectedPlatforms, setSelectedPlatforms] = useState<Platform[]>(['grailed', 'vinted', 'plick']);
-  const { queueMultipleTasks } = useAutomation();
+  const { crosspostListing } = useAutomation();
 
   const togglePlatform = (platform: Platform) => {
     setSelectedPlatforms((prev) =>
@@ -36,10 +36,9 @@ export function PostToAllButton({ listingId, listingTitle }: PostToAllButtonProp
   const handlePost = async () => {
     if (selectedPlatforms.length === 0) return;
 
-    await queueMultipleTasks.mutateAsync({
+    await crosspostListing.mutateAsync({
       listing_id: listingId,
       platforms: selectedPlatforms,
-      action: 'post',
     });
 
     setOpen(false);
@@ -82,10 +81,10 @@ export function PostToAllButton({ listingId, listingTitle }: PostToAllButtonProp
           </Button>
           <Button
             onClick={handlePost}
-            disabled={selectedPlatforms.length === 0 || queueMultipleTasks.isPending}
+            disabled={selectedPlatforms.length === 0 || crosspostListing.isPending}
           >
-            {queueMultipleTasks.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Queue {selectedPlatforms.length} Task{selectedPlatforms.length !== 1 && 's'}
+            {crosspostListing.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            Post to {selectedPlatforms.length} Platform{selectedPlatforms.length !== 1 && 's'}
           </Button>
         </DialogFooter>
       </DialogContent>
