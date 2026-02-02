@@ -8,9 +8,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { MoreHorizontal, Edit, Trash, ExternalLink, CheckCircle } from 'lucide-react';
+import { MoreHorizontal, Edit, Trash, CheckCircle, Send } from 'lucide-react';
 import { Listing, PlatformListing, PLATFORM_CONFIGS } from '@/lib/types';
 import { Link } from 'react-router-dom';
+import { PostToAllButton } from '@/components/automation/PostToAllButton';
+import { DelistButton } from '@/components/automation/DelistButton';
 
 interface ListingCardProps {
   listing: Listing;
@@ -125,6 +127,14 @@ export function ListingCard({
             );
           })}
         </div>
+
+        {/* Automation Actions */}
+        {listing.status !== 'sold' && (
+          <div className="flex items-center gap-2 mt-3 pt-3 border-t">
+            <PostToAllButton listingId={listing.id} listingTitle={listing.title} />
+            <DelistButton listingId={listing.id} listingTitle={listing.title} />
+          </div>
+        )}
       </CardContent>
     </Card>
   );

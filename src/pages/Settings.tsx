@@ -14,7 +14,8 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
-import { Loader2 } from 'lucide-react';
+import { AutomationQueue } from '@/components/automation/AutomationQueue';
+import { Loader2, Monitor, ExternalLink } from 'lucide-react';
 
 export default function Settings() {
   const { user } = useAuth();
@@ -167,6 +168,34 @@ export default function Settings() {
             </div>
           </CardContent>
         </Card>
+
+        <Card className="border-primary/20 bg-primary/5">
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <Monitor className="h-5 w-5 text-primary" />
+              <CardTitle>Desktop Companion App</CardTitle>
+            </div>
+            <CardDescription>
+              The companion app runs on your computer to automate posting across platforms
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Once you download and run the companion app, it will:
+            </p>
+            <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+              <li>Connect to your browser sessions for each platform</li>
+              <li>Post listings automatically when you queue them</li>
+              <li>Update or delist items across all platforms</li>
+            </ul>
+            <Button variant="outline" className="gap-2" disabled>
+              <ExternalLink className="h-4 w-4" />
+              Download Companion App (Coming Soon)
+            </Button>
+          </CardContent>
+        </Card>
+
+        <AutomationQueue />
 
         <Button onClick={handleSave} disabled={isLoading} className="w-full">
           {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}

@@ -53,15 +53,33 @@ Since Grailed, Vinted, and Plick don't offer public listing APIs, we'll build a 
 
 ---
 
-### Phase 3: Browser Automation (Optional)
+### Phase 3: Browser Automation via Desktop Companion App ✅ Infrastructure Ready
+
+**Architecture**
+- **Web Dashboard**: Manages listings, generates optimized content, queues automation tasks
+- **Desktop Companion App** (Electron): Runs Puppeteer locally on your computer
+  - Polls the automation queue for pending tasks
+  - Executes browser automation using your logged-in sessions
+  - Reports task status back to the dashboard
+
+**Automation Task Queue** (Implemented)
+- `automation_tasks` table tracks: post, update, delist, mark_sold actions
+- Tasks have status: pending → in_progress → completed/failed
+- Real-time polling (5s interval) for companion app
 
 **Direct Platform Posting**
-- Puppeteer-based automation running on your machine or a server
-- Login once, store sessions securely
-- One-click publish to all three platforms
+- Login once in the companion app, store sessions locally
+- One-click publish to all three platforms from the web dashboard
 - Status monitoring and retry handling
+- Error messages propagate back to the dashboard
 
-*Note: This phase requires careful implementation due to platform terms of service considerations*
+**Desktop App Features** (To be built separately)
+- Electron app with embedded Chromium
+- Platform session management (Grailed, Vinted, Plick)
+- Background task runner with system tray
+- Auto-update capability
+
+*Note: The companion app runs locally to respect platform ToS by using real browser sessions*
 
 ---
 
@@ -70,7 +88,7 @@ Since Grailed, Vinted, and Plick don't offer public listing APIs, we'll build a 
 - **Frontend**: Clean React dashboard with drag-drop photo upload
 - **Backend**: Supabase for database, authentication, and file storage
 - **Image Handling**: Optimized image compression and storage
-- **Automation** (Phase 3): Puppeteer service for browser automation
+- **Automation**: Local Electron app + Puppeteer for browser automation
 
 ---
 
@@ -81,4 +99,7 @@ Since Grailed, Vinted, and Plick don't offer public listing APIs, we'll build a 
 3. **Price management** across platforms with fee calculations
 4. **Status tracking** to know where each item is listed
 5. **Time savings** from not recreating listings manually
+6. **One-click cross-posting** via desktop companion app
+7. **Automated delisting** when items sell
+
 
