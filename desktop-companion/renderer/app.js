@@ -14,14 +14,22 @@ document.querySelectorAll('.tab').forEach(tab => {
   });
 });
 
+// Pre-filled configuration for this project
+const DEFAULT_CONFIG = {
+  supabaseUrl: 'https://jmzzuqtwjzjamsjssjtd.supabase.co',
+  supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imptenp1cXR3anpqYW1zanNzanRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk5Nzg4MTIsImV4cCI6MjA4NTU1NDgxMn0.D8AC5VNUxIzkVxS0DvlFtg_s0ro2HfnEpxCwe2wn2CM',
+  userId: 'f6ee0665-85eb-49e5-a935-6950172e1cde',
+};
+
 // Load configuration on startup
 async function loadConfig() {
   try {
     const config = await window.electronAPI.getConfig();
     
-    document.getElementById('supabase-url').value = config.supabaseUrl || '';
-    document.getElementById('supabase-key').value = config.supabaseKey || '';
-    document.getElementById('user-id').value = config.userId || '';
+    // Use saved config or fall back to defaults
+    document.getElementById('supabase-url').value = config.supabaseUrl || DEFAULT_CONFIG.supabaseUrl;
+    document.getElementById('supabase-key').value = config.supabaseKey || DEFAULT_CONFIG.supabaseKey;
+    document.getElementById('user-id').value = config.userId || DEFAULT_CONFIG.userId;
     document.getElementById('chrome-path').value = config.chromePath || getDefaultChromePath();
 
     // Update platform session statuses
