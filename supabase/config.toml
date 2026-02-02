@@ -1,1 +1,4 @@
 project_id = "jmzzuqtwjzjamsjssjtd"
+
+[functions.crosspost-listing]
+verify_jwt = false

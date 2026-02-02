@@ -131,6 +131,57 @@ export function useAutomation() {
     },
   });
 
+  // Crosspost via edge function - uses saved credentials
+  const crosspostListing = useMutation({
+    mutationFn: async ({
+      listing_id,
+      platforms,
+    }: {
+      listing_id: string;
+      platforms: Platform[];
+    }) => {
+      const { data, error } = await supabase.functions.invoke('crosspost-listing', {
+        body: { listing_id, platforms },
+      });
+
+      if (error) throw error;
+      
+      if (!data.success && data.message) {
+        throw new Error(data.message);
+      }
+      
+      return data;
+    },
+    onSuccess: (data, variables) => {
+      queryClient.invalidateQueries({ queryKey: ['automation_tasks'] });
+      queryClient.invalidateQueries({ queryKey: ['platform_listings'] });
+      
+      const successCount = Object.values(data.results || {}).filter((r: any) => r.success).length;
+      const failCount = variables.platforms.length - successCount;
+      
+      if (failCount > 0) {
+        toast({
+          title: 'Partial success',
+          description: `${successCount} tasks queued, ${failCount} failed. Check Settings for missing credentials.`,
+          variant: 'default',
+        });
+      } else {
+        toast({
+          title: 'Tasks queued',
+          description: `Posting to ${successCount} platform${successCount !== 1 ? 's' : ''} queued successfully.`,
+        });
+      }
+    },
+    onError: (error) => {
+      toast({
+        title: 'Crosspost failed',
+        description: error instanceof Error ? error.message : 'Please check your platform credentials in Settings.',
+        variant: 'destructive',
+      });
+      console.error('Crosspost error:', error);
+    },
+  });
+
   const updateTaskStatus = useMutation({
     mutationFn: async ({
       id,
@@ -200,6 +251,7 @@ export function useAutomation() {
     isLoading: tasksQuery.isLoading,
     queueTask,
     queueMultipleTasks,
+    crosspostListing,
     updateTaskStatus,
     cancelTask,
   };

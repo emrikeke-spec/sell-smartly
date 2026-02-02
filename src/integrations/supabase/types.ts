@@ -118,6 +118,45 @@ export type Database = {
         }
         Relationships: []
       }
+      platform_credentials: {
+        Row: {
+          created_at: string
+          email: string | null
+          encrypted_password: string
+          id: string
+          is_active: boolean | null
+          last_used_at: string | null
+          platform: string
+          updated_at: string
+          user_id: string
+          username: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          encrypted_password: string
+          id?: string
+          is_active?: boolean | null
+          last_used_at?: string | null
+          platform: string
+          updated_at?: string
+          user_id: string
+          username?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          encrypted_password?: string
+          id?: string
+          is_active?: boolean | null
+          last_used_at?: string | null
+          platform?: string
+          updated_at?: string
+          user_id?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
       platform_listings: {
         Row: {
           created_at: string
