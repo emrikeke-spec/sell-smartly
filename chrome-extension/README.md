@@ -6,7 +6,13 @@ Auto-fill listings on Grailed, Vinted, and Plick directly from your dashboard.
 
 1. **Download the extension folder**
    - Export your project to GitHub (Settings → GitHub → Export)
-   - Download just the `chrome-extension` folder
+   - Go to your GitHub repo and download the `chrome-extension` folder
+   - **Extract the ZIP file** after downloading
+
+2. **Find the correct folder**
+   - Open the extracted folder
+   - Keep navigating **until you see `manifest.json` directly** (not inside another subfolder)
+   - This is the folder you need to select in Chrome
 
 2. **Load in Chrome**
    - Open Chrome and go to `chrome://extensions`
