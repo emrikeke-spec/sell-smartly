@@ -14,6 +14,56 @@ export type Database = {
   }
   public: {
     Tables: {
+      automation_tasks: {
+        Row: {
+          action: string
+          completed_at: string | null
+          created_at: string
+          error_message: string | null
+          id: string
+          listing_id: string | null
+          payload: Json | null
+          platform: string
+          started_at: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          action: string
+          completed_at?: string | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          listing_id?: string | null
+          payload?: Json | null
+          platform: string
+          started_at?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          action?: string
+          completed_at?: string | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          listing_id?: string | null
+          payload?: Json | null
+          platform?: string
+          started_at?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "automation_tasks_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       listings: {
         Row: {
           base_price: number

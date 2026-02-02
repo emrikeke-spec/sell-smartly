@@ -6,6 +6,24 @@ export type PlatformStatus = 'draft' | 'ready' | 'listed' | 'sold' | 'removed';
 
 export type Condition = 'new' | 'like_new' | 'good' | 'fair' | 'poor';
 
+export type AutomationAction = 'post' | 'update' | 'delist' | 'mark_sold';
+
+export type AutomationStatus = 'pending' | 'in_progress' | 'completed' | 'failed';
+
+export interface AutomationTask {
+  id: string;
+  user_id: string;
+  listing_id: string | null;
+  platform: Platform;
+  action: AutomationAction;
+  status: AutomationStatus;
+  payload: Record<string, unknown> | null;
+  error_message: string | null;
+  created_at: string;
+  started_at: string | null;
+  completed_at: string | null;
+}
+
 export interface Listing {
   id: string;
   user_id: string;
