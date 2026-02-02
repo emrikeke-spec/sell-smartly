@@ -12,14 +12,14 @@ const PLATFORMS = [
     id: 'grailed', 
     name: 'Grailed', 
     icon: '🏷️', 
-    loginUrl: 'https://www.grailed.com/login',
+    loginUrl: 'https://www.grailed.com/users/sign_in',
     description: 'Menswear marketplace'
   },
   { 
     id: 'vinted', 
     name: 'Vinted', 
     icon: '👗', 
-    loginUrl: 'https://www.vinted.com',
+    loginUrl: 'https://www.vinted.com/member/general/login',
     description: 'European fashion marketplace'
   },
   { 
