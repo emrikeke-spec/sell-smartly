@@ -70,13 +70,14 @@ async function loadPendingListings() {
   if (!supabaseUrl || !supabaseKey || !userId) return;
   
   try {
-    // Fetch listings that are ready to post
+    // Use edge function to bypass RLS (extension can't authenticate as user)
     const response = await fetch(
-      `${supabaseUrl}/rest/v1/listings?user_id=eq.${userId}&status=in.(ready,draft)&order=created_at.desc&limit=10`,
+      `${supabaseUrl}/functions/v1/extension-listings`,
       {
         headers: {
           'apikey': supabaseKey,
-          'Authorization': `Bearer ${supabaseKey}`
+          'Authorization': `Bearer ${supabaseKey}`,
+          'x-user-id': userId
         }
       }
     );
